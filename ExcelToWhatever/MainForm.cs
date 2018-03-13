@@ -22,7 +22,7 @@ namespace ExcelToWhatever
 
         private void Generate()
         {
-            if (!string.IsNullOrWhiteSpace(tbTemplate.Text) && 
+            if (!string.IsNullOrWhiteSpace(tbTemplate.Text) &&
                 !string.IsNullOrWhiteSpace(tbFilename.Text) &&
                 File.Exists(tbFilename.Text))
             {
@@ -32,7 +32,7 @@ namespace ExcelToWhatever
                 using (ExcelPackage package = new ExcelPackage(new FileInfo(filename)))
                 {
 
-                    var worksheet = package.Workbook.Worksheets.FirstOrDefault();
+                    var worksheet = package.Workbook.Worksheets.FirstOrDefault(m => m.Name == cmbSheets.Text);
 
                     var sb = new StringBuilder();
 
@@ -83,6 +83,13 @@ namespace ExcelToWhatever
                     if (fileDialog.ShowDialog() == DialogResult.OK)
                     {
                         tbFilename.Text = fileDialog.FileName;
+                        using (ExcelPackage package = new ExcelPackage(new FileInfo(tbFilename.Text)))
+                        {
+                            var worksheets = package.Workbook.Worksheets.Select(m => m.Name).ToArray();
+                            cmbSheets.Items.Clear();
+                            cmbSheets.Items.AddRange(worksheets);
+                            cmbSheets.Text = worksheets.First();
+                        }
                     }
                 }
             }
@@ -94,9 +101,9 @@ namespace ExcelToWhatever
 
         private void btnGenerate_Click(object sender, EventArgs e)
         {
-            
-                Generate();
-            
+
+            Generate();
+
         }
 
     }

@@ -34,12 +34,14 @@
             this.label2 = new System.Windows.Forms.Label();
             this.tbTemplate = new System.Windows.Forms.RichTextBox();
             this.btnGenerate = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.cmbSheets = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // btnBrowse
             // 
             this.btnBrowse.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnBrowse.Location = new System.Drawing.Point(511, 10);
+            this.btnBrowse.Location = new System.Drawing.Point(738, 10);
             this.btnBrowse.Name = "btnBrowse";
             this.btnBrowse.Size = new System.Drawing.Size(92, 23);
             this.btnBrowse.TabIndex = 0;
@@ -53,7 +55,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tbFilename.Location = new System.Drawing.Point(99, 12);
             this.tbFilename.Name = "tbFilename";
-            this.tbFilename.Size = new System.Drawing.Size(406, 20);
+            this.tbFilename.Size = new System.Drawing.Size(633, 20);
             this.tbFilename.TabIndex = 1;
             // 
             // label1
@@ -68,7 +70,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 42);
+            this.label2.Location = new System.Drawing.Point(12, 75);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(51, 13);
             this.label2.TabIndex = 3;
@@ -79,16 +81,16 @@
             this.tbTemplate.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbTemplate.Location = new System.Drawing.Point(99, 42);
+            this.tbTemplate.Location = new System.Drawing.Point(99, 72);
             this.tbTemplate.Name = "tbTemplate";
-            this.tbTemplate.Size = new System.Drawing.Size(504, 320);
+            this.tbTemplate.Size = new System.Drawing.Size(731, 333);
             this.tbTemplate.TabIndex = 4;
             this.tbTemplate.Text = "";
             // 
             // btnGenerate
             // 
             this.btnGenerate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnGenerate.Location = new System.Drawing.Point(511, 368);
+            this.btnGenerate.Location = new System.Drawing.Point(738, 411);
             this.btnGenerate.Name = "btnGenerate";
             this.btnGenerate.Size = new System.Drawing.Size(92, 23);
             this.btnGenerate.TabIndex = 5;
@@ -96,18 +98,38 @@
             this.btnGenerate.UseVisualStyleBackColor = true;
             this.btnGenerate.Click += new System.EventHandler(this.btnGenerate_Click);
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(12, 43);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(51, 13);
+            this.label3.TabIndex = 6;
+            this.label3.Text = "Template";
+            // 
+            // cmbSheets
+            // 
+            this.cmbSheets.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbSheets.FormattingEnabled = true;
+            this.cmbSheets.Location = new System.Drawing.Point(99, 39);
+            this.cmbSheets.Name = "cmbSheets";
+            this.cmbSheets.Size = new System.Drawing.Size(284, 21);
+            this.cmbSheets.TabIndex = 7;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Icon = Properties.Resources.excel;
-            this.ClientSize = new System.Drawing.Size(615, 405);
+            this.ClientSize = new System.Drawing.Size(842, 448);
+            this.Controls.Add(this.cmbSheets);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.btnGenerate);
             this.Controls.Add(this.tbTemplate);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.tbFilename);
             this.Controls.Add(this.btnBrowse);
+            this.Icon = global::ExcelToWhatever.Properties.Resources.excel;
             this.Name = "MainForm";
             this.Text = "Excel to whatever";
             this.ResumeLayout(false);
@@ -123,6 +145,8 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.RichTextBox tbTemplate;
         private System.Windows.Forms.Button btnGenerate;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ComboBox cmbSheets;
     }
 }
 
