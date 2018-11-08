@@ -81,11 +81,13 @@
             this.tbTemplate.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbTemplate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbTemplate.ForeColor = System.Drawing.Color.RoyalBlue;
             this.tbTemplate.Location = new System.Drawing.Point(99, 72);
             this.tbTemplate.Name = "tbTemplate";
             this.tbTemplate.Size = new System.Drawing.Size(731, 333);
             this.tbTemplate.TabIndex = 4;
-            this.tbTemplate.Text = "";
+            this.tbTemplate.Text = "{{\n  \"id\": {0},\n  \"name\": \"{1}\",\n  \"index\": $i\n}},";
             // 
             // btnGenerate
             // 
@@ -103,9 +105,9 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(12, 43);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(51, 13);
+            this.label3.Size = new System.Drawing.Size(35, 13);
             this.label3.TabIndex = 6;
-            this.label3.Text = "Template";
+            this.label3.Text = "Sheet";
             // 
             // cmbSheets
             // 
@@ -118,6 +120,7 @@
             // 
             // MainForm
             // 
+            this.AllowDrop = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(842, 448);
@@ -132,6 +135,8 @@
             this.Icon = global::ExcelToWhatever.Properties.Resources.excel;
             this.Name = "MainForm";
             this.Text = "Excel to whatever";
+            this.DragDrop += new System.Windows.Forms.DragEventHandler(this.MainForm_DragDrop);
+            this.DragEnter += new System.Windows.Forms.DragEventHandler(this.MainForm_DragEnter);
             this.ResumeLayout(false);
             this.PerformLayout();
 

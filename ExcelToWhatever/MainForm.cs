@@ -50,7 +50,7 @@ namespace ExcelToWhatever
 
                             }
 
-                            sb.Append(string.Format(tbTemplate.Text, values.ToArray()) + Environment.NewLine);
+                            sb.Append(string.Format(tbTemplate.Text, values.ToArray()).Replace("$i", (i - 1).ToString()) + Environment.NewLine);
 
                             values.Clear();
 
@@ -83,19 +83,24 @@ namespace ExcelToWhatever
                     if (fileDialog.ShowDialog() == DialogResult.OK)
                     {
                         tbFilename.Text = fileDialog.FileName;
-                        using (ExcelPackage package = new ExcelPackage(new FileInfo(tbFilename.Text)))
-                        {
-                            var worksheets = package.Workbook.Worksheets.Select(m => m.Name).ToArray();
-                            cmbSheets.Items.Clear();
-                            cmbSheets.Items.AddRange(worksheets);
-                            cmbSheets.Text = worksheets.First();
-                        }
+                        LoadSheets();
                     }
                 }
             }
             catch
             {
                 // Ignored
+            }
+        }
+
+        private void LoadSheets()
+        {
+            using (ExcelPackage package = new ExcelPackage(new FileInfo(tbFilename.Text)))
+            {
+                var worksheets = package.Workbook.Worksheets.Select(m => m.Name).ToArray();
+                cmbSheets.Items.Clear();
+                cmbSheets.Items.AddRange(worksheets);
+                cmbSheets.Text = worksheets.First();
             }
         }
 
@@ -106,5 +111,30 @@ namespace ExcelToWhatever
 
         }
 
+        private void MainForm_DragDrop(object sender, DragEventArgs e)
+        {
+            try
+            {
+                if (e.Data.GetDataPresent(DataFormats.FileDrop))
+                {
+                    var filePaths = e.Data.GetData(DataFormats.FileDrop) as string[];
+                    if (filePaths != null && filePaths.Length > 0)
+                    {
+                        tbFilename.Text = filePaths[0];
+                        LoadSheets();
+                    }
+                }
+            }
+            catch { }
+        }
+
+        private void MainForm_DragEnter(object sender, DragEventArgs e)
+        {
+            try
+            {
+                e.Effect = e.Data.GetDataPresent(DataFormats.FileDrop) ? DragDropEffects.Copy : DragDropEffects.None;
+            }
+            catch { }
+        }
     }
 }
